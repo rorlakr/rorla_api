@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/RORLabNew/rorla_api.png?label=ready)](https://waffle.io/RORLabNew/rorla_api)
 RORLa-API (로라 API)
 =======
 
