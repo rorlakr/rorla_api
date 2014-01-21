@@ -23,6 +23,6 @@ Development Stack
 Collaboration Tools
 ------
 
-* [[Waffle.io | https://waffle.io/RORLabNew/rorla_api]]
-* [[HipChat ROR Lab. Room | http://rorlab.hipchat.com]] : 유료 서비스 - $2/user/month
+* [Waffle.io](https://waffle.io/RORLabNew/rorla_api)
+* [HipChat ROR Lab. Room](http://rorlab.hipchat.com) : 유료 서비스 - $2/user/month
 
