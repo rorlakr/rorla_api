@@ -13,9 +13,11 @@ ROR Lab.의 공유정신은 웹사이트 리뉴얼에도 그대로 이어져 누
 Development Stack
 -------
 
-* Backend : Rails API
-* Frontend
+* Back-end
+  *  Rails API
+* Front-end
   * AngularJS for Web site
+* MobileApp
   * Android App for Android device
   * iphone App for Apple Device
 
