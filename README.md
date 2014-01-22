@@ -19,5 +19,3 @@ Development Stack
   * Android App for Android device
   * iphone App for Apple Device
 
-
-
