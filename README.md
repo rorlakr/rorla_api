@@ -1,6 +1,6 @@
 [![Stories in Ready](https://badge.waffle.io/RORLabNew/rorla_api.png?label=ready)](https://waffle.io/RORLabNew/rorla_api)
 RORLa-API (로라 API)
-=======
+========
 
 : ROR Lab. 웹사이트 리뉴얼 공개 프로젝트
 
