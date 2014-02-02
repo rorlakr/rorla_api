@@ -20,6 +20,8 @@ module RorlaApi
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
     config.generators do |g|
       g.test_framework :rspec,
         fixtures: true,
