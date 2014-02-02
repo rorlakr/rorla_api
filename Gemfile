@@ -12,10 +12,20 @@ gem 'devise'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+group :development do
+  gem 'annotate'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
+
 # Gems for Everyday Rails Testing with RSpec
 group :development, :test do
   gem "rspec-rails", "~> 2.14.0"
   gem "factory_girl_rails", "~> 4.2.1"
+  gem 'guard', '~> 2'
+  gem 'guard-rspec',require: false
+  gem 'spring'
+  gem "spring-commands-rspec"
 end
 
 group :test do
@@ -24,6 +34,7 @@ group :test do
   gem "database_cleaner", "~> 1.0.1"
   gem "launchy", "~> 2.3.0"
   gem "selenium-webdriver", "~> 2.35.1"
+  gem "shoulda-matchers"
 end
 
 # To use ActiveModel has_secure_password
