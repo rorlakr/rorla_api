@@ -6,7 +6,8 @@ RorlaApi::Application.routes.draw do
                sign_out: 'logout'
              },
              :controllers => { :sessions => "users/sessions",
-                               :registrations => "users/registrations" }
+                               :registrations => "users/registrations",
+                               :confirmations => "users/confirmations" }
   resources :users, except: [ :new, :edit ]
 
   # The priority is based upon order of creation: first created -> highest priority.
