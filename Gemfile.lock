@@ -26,9 +26,17 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    annotate (2.6.1)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (4.0.1)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
+    better_errors (1.0.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -42,6 +50,7 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
     database_cleaner (1.0.1)
+    debug_inspector (0.0.2)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -172,6 +181,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
+  better_errors
+  binding_of_caller
   capybara (~> 2.1.0)
   database_cleaner (~> 1.0.1)
   devise

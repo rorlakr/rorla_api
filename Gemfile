@@ -12,6 +12,12 @@ gem 'devise'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+group :development do
+  gem 'annotate'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
+
 # Gems for Everyday Rails Testing with RSpec
 group :development, :test do
   gem "rspec-rails", "~> 2.14.0"
