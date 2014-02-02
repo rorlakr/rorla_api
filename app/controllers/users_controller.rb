@@ -1,50 +1,41 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
+  skip_before_filter :authenticate_user!, :only => [:create]
+  before_action :set_user, except: [:index, :create]
 
-    render json: @users
+  def index
+    if params[:letter]
+      @users = User.by_letter(params[:letter])
+    else
+      @users = User.all
+    end
+    render json: @users.order(:name)
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
-    @user = User.find(params[:id])
-
     render json: @user
   end
 
-  # POST /users
-  # POST /users.json
   def create
-    @user = User.new(params[:user])
-
+    @user = User.new(user_params)
     if @user.save
-      render json: @user, status: :created, location: @user
+      render json: user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: @user.errors, status: :bad_request
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
-    @user = User.find(params[:id])
-
-    if @user.update(params[:user])
-      head :no_content
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+    @user.update(user_params)
+    render json: @user
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
+  private
 
-    head :no_content
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:name)
   end
 end
