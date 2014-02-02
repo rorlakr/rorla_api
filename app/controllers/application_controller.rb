@@ -12,11 +12,11 @@ class ApplicationController < ActionController::API
   include ActionController::ImplicitRender
 
   # To make view helper methods available in Rails API
-  include CursorPagination::ActionViewHelper
+  # include CursorPagination::ActionViewHelper
 
   # To enable authorize methods in controller
   # Ref. https://github.com/nathanl/authority/issues/64
-  include Authority::Controller
+  # include Authority::Controller
 
   before_filter :authenticate_user_from_token!
   before_filter :authenticate_user!
