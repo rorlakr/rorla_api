@@ -194,4 +194,9 @@ ko:
       <<: *errors
   activerecord:
     errors:
+      models:
+        user:
+          attributes:
+            confirmation_token:
+              invalid: 이메일 인증 토큰이 유효하지 않습니다.
       <<: *errors
