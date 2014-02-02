@@ -16,6 +16,7 @@ group :development do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'letter_opener'
 end
 
 # Gems for Everyday Rails Testing with RSpec
