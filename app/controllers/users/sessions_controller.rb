@@ -18,7 +18,6 @@ class Users::SessionsController < Devise::SessionsController
 
     render :json => {
       id: resource.id,
-      name: resource.name,
       email: resource.email,
       auth_token: token
     }
