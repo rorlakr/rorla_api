@@ -22,6 +22,9 @@
 #
 
 class User < ActiveRecord::Base
+
+  include TokenAuthenticatable
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
