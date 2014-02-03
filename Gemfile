@@ -16,6 +16,7 @@ group :development do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'letter_opener'
 end
 
 # Gems for Everyday Rails Testing with RSpec
@@ -35,6 +36,11 @@ group :test do
   gem "launchy", "~> 2.3.0"
   gem "selenium-webdriver", "~> 2.35.1"
   gem "shoulda-matchers"
+end
+
+# 모델관계를 깔끔하게 다이어그램으로 그려줍니다. PDF출력 제공
+group :development do
+  gem "rails-erd"
 end
 
 # To use ActiveModel has_secure_password

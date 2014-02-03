@@ -1,0 +1,57 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+ko:
+  errors:
+    messages:
+      expired: "가(이) 만료되었습니다. 새로 요청해 주십시오"
+      not_found: "를(을) 찾을 수 없습니다"
+      already_confirmed: "이미 확인되었습니다, 다시 로그인 해 주십시오"
+      not_locked: "가(이) 잠기지 않았습니다"
+      not_saved:
+        one: "1개의 에러가 발생해서 %{resource}를(을) 저장할 수 없습니다:"
+        other: "%{count}개의 에러가 발생해서 %{resource}를(을) 저장할 수 없습니다:"
+
+  devise:
+    failure:
+      already_authenticated: '이미 로그인하셨습니다.'
+      unauthenticated: '이용하시려면 로그인하거나 가입하셔야 합니다.'
+      unconfirmed: '계정 확인 하셔야 이용하실 수 있습니다.'
+      locked: '계정이 잠겼습니다.'
+      invalid: '이메일이나 패스워드가 다릅니다.'
+      invalid_token: '잘못된 인증 토큰 입니다.'
+      timeout: '세션이 만료되어습니다, 계속하시려면 로그인해주세요.'
+      inactive: '계정이 아직 활성화 되지 않았습니다. '
+    sessions:
+      signed_in: '성공적으로 로그인 하셨습니다.'
+      signed_out: '성공적으로 로그아웃 하셨습니다.'
+    passwords:
+      send_instructions: '어떻게 비밀번호를 재설정하는지 안내하는 메일을 발송하였습니다. 잠시후 확인해 보세요.'
+      updated: '비밀번호를 성공적으로 변경했습니다. 이제 로그인된 상태입니다.'
+      updated_not_active: '비밀번호를 성공적으로 변경했습니다.'
+      send_paranoid_instructions: "데이터베이스에 고객님의 이메일 주소가 존재하면, 비밀번호 복구 링크가 담긴 이메일을 곧 받으실 수 있습니다."
+    confirmations:
+      send_instructions: '이메일 주소를 확인하는 메일을 발송하였습니다. 잠시후에 메일을 확인해보세요.'
+      send_paranoid_instructions: '데이터베이스에 고객님의 이메일 주소가 존재하면, 이메일 주소를 확인하는 방법이 담긴 이메일을 곧 받으실 수 있습니다.'
+      confirmed: '성공적으로 이메일 주소를 확인하였습니다. 이제 로그인된 상태입니다.'
+    registrations:
+      signed_up: '환영합니다! 성공적으로 가입하셨습니다.'
+      signed_up_but_unconfirmed: '이메일 주소 확인 링크가 담긴 메일을 발송하였습니다. 계정을 활성화 하기 위해서 그 링크를 방문해주세요.'
+      signed_up_but_inactive: '고객님은 성공적으로 가입하셨습니다. 그러나 아직 계정이 활성화되지 않아 지금 로그인하실 수 없습니다.'
+      signed_up_but_locked: '고객님은 성공적으로 가입하셨습니다. 그러나 계정이 잠겨 있어 지금 로그인하실 수 없습니다.'
+      updated: '성공적으로 계정이 수정되었습니다.'
+      update_needs_confirmation: "성공적으로 계정이 수정되었습니다, 하지만 저희가 이메일주소를 확인해야 합니다. 이메일을 확인하시고 새로 바뀐 이메일 주소를 확인하는 링크를 방문해주세요."
+      destroyed: '안녕히가세요! 계정이 성공적으로 삭제되었습니다. 다시 뵙기를 고대합니다.'
+    unlocks:
+      send_instructions: '계정 잠금을 푸는 링크가 담긴 메일을 발송하있습니다. 잠시후에 확인해 보세요.'
+      unlocked: '성공적으로 계정 잠금을 풀었습니다. 계속 이용하시려면 로그인하세요.'
+      send_paranoid_instructions: '고객님의 계정이 존재하면, 곧 계정 잠금을 푸는 방법이 담긴 이메일을 받으실 수 있습니다.'
+    omniauth_callbacks:
+      success: '%{kind} 계정으로 성공적으로 인증되었습니다.'
+      failure: '다음과 같은 이유로 %{kind}에서 인증에 실패하였습니다. "%{reason}"'
+    mailer:
+      confirmation_instructions:
+        subject: '이메일 주소 확인 메일'
+      reset_password_instructions:
+        subject: '비밀번호 변경 확인 메일'
+      unlock_instructions:
+        subject: '계정 Unlock 메일'
