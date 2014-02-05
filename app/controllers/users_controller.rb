@@ -3,12 +3,8 @@ class UsersController < ApplicationController
   before_action :set_user, except: [:index, :create]
 
   def index
-    if params[:letter]
-      @users = User.by_letter(params[:letter])
-    else
-      @users = User.all
-    end
-    render json: @users.order(:name)
+    @users = User.all
+    render json: @users
   end
 
   def show
@@ -27,6 +23,11 @@ class UsersController < ApplicationController
   def update
     @user.update(user_params)
     render json: @user
+  end
+
+  def destroy
+    @user.destroy
+    render json: { message: "destroyed" }
   end
 
   private
