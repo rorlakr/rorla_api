@@ -24,5 +24,9 @@
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "user모델 객체의 생성" do
+    it ">유효한 데이터로 user 객체를 생성할 수 있다."
+    it ">email이 없으면 유효하지 않다."
+    it ">password가 없으면 유효하지 않다."
+  end
 end
