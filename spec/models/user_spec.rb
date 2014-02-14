@@ -36,5 +36,20 @@ describe User do
     it "> password가 없으면 유효하지 않다." do
       expect(User.new(email: "user1@gmail.com", password: nil)).to_not be_valid
     end
+
+    it "> email의 중복이 유효하지 않다." do
+      user = User.create(
+        email: 'tester@example.com',
+        password: '12345678')
+      another_user = User.new(
+        email: 'tester@example.com',
+        password: '12345678')
+      expect(another_user).to have(1).errors_on(:email)
+    end
+
   end
+
+
+
+
 end
