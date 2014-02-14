@@ -28,6 +28,11 @@ describe User do
     it "> 유효한 데이터로 생성한 user 객체는 유효하다." do
       expect(User.new(email: "user1@gmail.com", password: "password")).to be_valid
     end
+    it "> 공백 구분없이 이메일이 같은 경우는 유효하지 않다." do
+      User.create(email: "user1@gmail.com", password: "password")
+      user = User.new(email:"u ser 1@gmail.com", password: "password")
+      expect(user).to_not be_valid
+    end
   end
   describe "> User모델 유효성 검증" do
     it "> email이 없으면 유효하지 않다." do
