@@ -28,6 +28,7 @@ describe User do
     it "> 유효한 데이터로 생성한 user 객체는 유효하다." do
       expect(User.new(email: "user1@gmail.com", password: "password")).to be_valid
     end
+
     it "> email의 중복이 유효하지 않다." do
       user = User.create(
         email: 'tester@example.com',
@@ -42,6 +43,7 @@ describe User do
     it "> email이 없으면 유효하지 않다." do
       expect(User.new(email: nil, password: "password")).to_not be_valid
     end
+    
     it "> password가 없으면 유효하지 않다." do
       expect(User.new(email: "user1@gmail.com", password: nil)).to_not be_valid
     end
