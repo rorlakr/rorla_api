@@ -28,6 +28,14 @@ describe User do
     it "> 유효한 데이터로 생성한 user 객체는 유효하다." do
       expect(User.new(email: "user1@gmail.com", password: "password")).to be_valid
     end
+
+    it "> 비밀번호 길이가 8자리보다 짧을경우 유효하지 않다." do
+      expect(User.new(email: "user1@gmail.com", password: "1234567")).to_not be_valid
+    end
+
+    it "> 비밀번호 길이가 128자리보다 길경우 유효하지 않다." do
+      expect(User.new(email: "user1@gmail.com", password: '1'*129)).to_not be_valid
+    end
   end
   describe "> User모델 유효성 검증" do
     it "> email이 없으면 유효하지 않다." do
