@@ -36,11 +36,22 @@ describe User do
     it "> 비밀번호 길이가 128자리보다 길경우 유효하지 않다." do
       expect(User.new(email: "user1@gmail.com", password: '1'*129)).to_not be_valid
     end
+
+    it "> email의 중복이 유효하지 않다." do
+      user = User.create(
+        email: 'tester@example.com',
+        password: '12345678')
+      another_user = User.new(
+        email: 'tester@example.com',
+        password: '12345678')
+      expect(another_user).to have(1).errors_on(:email)
+    end
   end
   describe "> User모델 유효성 검증" do
     it "> email이 없으면 유효하지 않다." do
       expect(User.new(email: nil, password: "password")).to_not be_valid
     end
+    
     it "> password가 없으면 유효하지 않다." do
       expect(User.new(email: "user1@gmail.com", password: nil)).to_not be_valid
     end
