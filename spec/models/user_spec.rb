@@ -29,6 +29,14 @@ describe User do
       expect(User.new(email: "user1@gmail.com", password: "password")).to be_valid
     end
 
+    it "> 비밀번호 길이가 8자리보다 짧을경우 유효하지 않다." do
+      expect(User.new(email: "user1@gmail.com", password: "1234567")).to_not be_valid
+    end
+
+    it "> 비밀번호 길이가 128자리보다 길경우 유효하지 않다." do
+      expect(User.new(email: "user1@gmail.com", password: '1'*129)).to_not be_valid
+    end
+
     it "> email의 중복이 유효하지 않다." do
       user = User.create(
         email: 'tester@example.com',
