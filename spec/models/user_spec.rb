@@ -29,14 +29,12 @@ describe User do
       user = build(:user, password: "password")
       expect(user).to be_valid
     end
-<<<<<<< HEAD
+      
     it "> 대소문자 구별없이 이메일이 같은 경우 유효하지 않다 " do
       User.create(email: "user1@gmail.com", password: "password")
       user = User.new(email: "User1@gmail.com", password: "password")
       expect(user).to_not be_valid
     end
-      
-=======
 
     it "> 비밀번호 길이가 8자리보다 짧을경우 유효하지 않다." do
       user = build(:user, password: "1234567")      
@@ -59,7 +57,7 @@ describe User do
       user = build(:user, email:"u ser 1@gmail.com", password: "password")
       expect(user).to_not be_valid
     end
->>>>>>> 0129465527fdce7151672725fb0873cdd2976b82
+
   end
   describe "> User모델 유효성 검증" do
     it "> email이 없으면 유효하지 않다." do
