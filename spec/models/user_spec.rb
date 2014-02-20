@@ -31,9 +31,9 @@ describe User do
     end
       
     it "> 대소문자 구별없이 이메일이 같은 경우 유효하지 않다 " do
-      User.create(email: "user1@gmail.com", password: "password")
-      user = User.new(email: "User1@gmail.com", password: "password")
-      expect(user).to_not be_valid
+      create(:user, email: 'tester@example.com')
+      tester = build(:user, email: 'Tester@example.com')
+      expect(tester).to_not be_valid
     end
 
     it "> 비밀번호 길이가 8자리보다 짧을경우 유효하지 않다." do
