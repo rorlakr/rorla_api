@@ -7,5 +7,6 @@ describe Post do
     it "> Content가 없으면 유효하지 않다."
     it "> 4개의 Comment를 가지고 있다."
     it "> Post 생성시 hit는 0이다."
+    it "> 1개의 User를 가지고 있다."
   end
 end
