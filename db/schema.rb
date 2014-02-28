@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220060141) do
+ActiveRecord::Schema.define(version: 20140228053230) do
 
   create_table "auth_tokens", force: true do |t|
     t.integer  "user_id"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20140220060141) do
   add_index "auth_tokens", ["user_id"], name: "index_auth_tokens_on_user_id"
 
   create_table "comments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plazas", force: true do |t|
+    t.integer  "postit_id"
+    t.string   "postit_type"
+    t.boolean  "visible"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
