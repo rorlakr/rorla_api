@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :question do
+    title "Question title"
+    content "Question Content"
   end
 end
