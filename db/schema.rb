@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304130314) do
+ActiveRecord::Schema.define(version: 20140307112603) do
 
   create_table "auth_tokens", force: true do |t|
     t.integer  "user_id"
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(version: 20140304130314) do
   end
 
   add_index "posts", ["writer_id"], name: "index_posts_on_writer_id"
+
+  create_table "questions", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
