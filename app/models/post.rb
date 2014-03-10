@@ -12,7 +12,7 @@
 #
 
 class Post < ActiveRecord::Base
-  has_one :plaza, :as => :plazable, :dependent => :destroy
+  has_one :plaza, :as => :postitable, :dependent => :destroy
 
   validates :title, presence: true
   validates :content, presence: true

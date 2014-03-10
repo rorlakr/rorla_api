@@ -3,8 +3,8 @@
 # Table name: plazas
 #
 #  id            :integer          not null, primary key
-#  plazable_id   :integer
-#  plazable_type :string(255)
+#  postitable_id   :integer
+#  postitable_type :string(255)
 #  visible       :boolean
 #  created_at    :datetime
 #  updated_at    :datetime
@@ -14,13 +14,13 @@
 
 FactoryGirl.define do
   factory :post_plaza, class: "plaza" do
-    association :plazable, :factory => :post
-    plazable_type 'post'
+    association :postitable, :factory => :post
+    postitable_type 'post'
     visible false
   end
   factory :question_plaza, class: "plaza" do
-    association :plazable, :factory => :question
-    plazable_type 'question'
+    association :postitable, :factory => :question
+    postitable_type 'question'
     visible false
   end  
 end

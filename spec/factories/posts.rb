@@ -20,7 +20,7 @@ FactoryGirl.define do
     content "content"
 
     after(:create) do |post|
-      post.plaza = FactoryGirl.create(:post_plaza, plazable_id: post.id, plazable_type: "post")
+      post.plaza = FactoryGirl.create(:post_plaza, postitable_id: post.id, postitable_type: "post")
     end    
   end
 end

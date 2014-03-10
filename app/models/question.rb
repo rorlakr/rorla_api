@@ -10,7 +10,7 @@
 #
 
 class Question < ActiveRecord::Base
-  has_one :plaza, :as => :plazable, :dependent => :destroy
+  has_one :plaza, :as => :postitable, :dependent => :destroy
   
   validates_presence_of :title, :content
 end
