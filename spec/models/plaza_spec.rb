@@ -1,14 +1,30 @@
+# == Schema Information
+#
+# Table name: plazas
+#
+#  id            :integer          not null, primary key
+#  plazable_id   :integer
+#  plazable_type :string(255)
+#  visible       :boolean
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
 require 'spec_helper'
 
-describe Plaza do 
+describe Plaza do
   describe "모델 객체의 생성" do
-    it "> 유효한 데이터로 생성한 Plaza 객체는 유효하다."  
-    it "> postit_type이 없으면 유효하지 않다."
+    it "> Post 객체를 유효한 데이터로 생성시 Plaza에 추가된다." do
+      post = create(:post)      
+      expect(post.plaza).to be_valid
+    end
+    it "> Question 객체를 유효한 데이터로 생성시 Plaza에 추가된다." do
+      question = create(:question)      
+      expect(question.plaza).to be_valid
+    end    
   end
   describe "유효성 검증"
-  describe "관계선언 검증" do
-    it "> 한 개의 Plaza 객체는 여러개의 Post 객체들을 가질 수 있다."
-  end
+  describe "관계선언 검증"
   describe "스코프 및 클래스 메소드 검증"
   describe "인스턴스 메소드 검증"
 end

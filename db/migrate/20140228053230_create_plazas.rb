@@ -1,8 +1,7 @@
 class CreatePlazas < ActiveRecord::Migration
   def change
     create_table :plazas do |t|
-      t.integer :postit_id
-      t.string :postit_type
+      t.references :plazable, polymorphic: true, index: true
       t.boolean :visible
 
       t.timestamps

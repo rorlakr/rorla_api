@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228053230) do
+ActiveRecord::Schema.define(version: 20140307112603) do
 
   create_table "auth_tokens", force: true do |t|
     t.integer  "user_id"
@@ -28,14 +28,29 @@ ActiveRecord::Schema.define(version: 20140228053230) do
   end
 
   create_table "plazas", force: true do |t|
-    t.integer  "postit_id"
-    t.string   "postit_type"
+    t.integer  "plazable_id"
+    t.string   "plazable_type"
     t.boolean  "visible"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "plazas", ["plazable_id", "plazable_type"], name: "index_plazas_on_plazable_id_and_plazable_type"
+
   create_table "posts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.text     "content"
+    t.integer  "writer_id"
+    t.boolean  "published",  default: false
+  end
+
+  add_index "posts", ["writer_id"], name: "index_posts_on_writer_id"
+
+  create_table "questions", force: true do |t|
+    t.string   "title"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
