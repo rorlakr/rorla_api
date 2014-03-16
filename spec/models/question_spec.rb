@@ -17,7 +17,16 @@ describe Question do
     end
   end
 
-  describe "관계선언 검증"
+  describe "관계선언 검증" do
+    it "> answer를 가질 수 있다." do
+      expect(create(:question_with_answers).answers.first).to be_valid
+    end
+
+    it "> 다수의 answer를 가질 수 있다." do
+      expect(create(:question_with_answers, answers_count: 5).answers.count).to eq 5
+    end
+
+  end
   describe "스코프 및 클래스 메소드 검증"
   describe "인스턴스 메소드 검증"
 end
