@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 20140307112603) do
     t.datetime "updated_at"
   end
 
+  create_table "plazas", force: true do |t|
+    t.integer  "postitable_id"
+    t.string   "postitable_type"
+    t.boolean  "visible"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "plazas", ["postitable_id", "postitable_type"], name: "index_plazas_on_postitable_id_and_postitable_type"
+
   create_table "posts", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
