@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140316073329) do
+ActiveRecord::Schema.define(version: 20140318035342) do
 
   create_table "answers", force: true do |t|
     t.text     "content"
@@ -34,6 +34,22 @@ ActiveRecord::Schema.define(version: 20140316073329) do
   create_table "comments", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "location"
+    t.string   "fb_event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
+    t.decimal  "latitude",     precision: 10, scale: 6
+    t.decimal  "longitude",    precision: 10, scale: 6
+    t.datetime "updated_time"
+    t.text     "material"
+    t.boolean  "modifiable",                            default: false
   end
 
   create_table "plazas", force: true do |t|
