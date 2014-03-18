@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220060141) do
+ActiveRecord::Schema.define(version: 20140318035342) do
+
+  create_table "answers", force: true do |t|
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "question_id"
+  end
+
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
 
   create_table "auth_tokens", force: true do |t|
     t.integer  "user_id"
@@ -27,10 +36,52 @@ ActiveRecord::Schema.define(version: 20140220060141) do
     t.datetime "updated_at"
   end
 
-  create_table "posts", force: true do |t|
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "location"
+    t.string   "fb_event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
+    t.decimal  "latitude",     precision: 10, scale: 6
+    t.decimal  "longitude",    precision: 10, scale: 6
+    t.datetime "updated_time"
+    t.text     "material"
+    t.boolean  "modifiable",                            default: false
+  end
+
+  create_table "plazas", force: true do |t|
+    t.integer  "postitable_id"
+    t.string   "postitable_type"
+    t.boolean  "visible"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "plazas", ["postitable_id", "postitable_type"], name: "index_plazas_on_postitable_id_and_postitable_type"
+
+  create_table "posts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.text     "content"
+    t.integer  "writer_id"
+    t.boolean  "published",  default: false
+  end
+
+  add_index "posts", ["writer_id"], name: "index_posts_on_writer_id"
+
+  create_table "questions", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "questions", ["user_id"], name: "index_questions_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
