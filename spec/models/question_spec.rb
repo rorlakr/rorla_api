@@ -1,8 +1,19 @@
+# == Schema Information
+#
+# Table name: questions
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)
+#  content    :text
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'spec_helper'
 
 describe Question do
   describe "모델 객체의 생성" do
-    it "> 생성한 Post 객체는 유효하다." do
+    it "> 생성한 Question 객체는 유효하다." do
       expect(create(:question)).to be_valid
     end
   end

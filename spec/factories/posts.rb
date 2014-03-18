@@ -15,7 +15,12 @@
 
 FactoryGirl.define do
   factory :post do
+
     title "title"
     content "content"
+
+    after(:create) do |post|
+      post.plaza = FactoryGirl.create(:post_plaza, postitable_id: post.id, postitable_type: "post")
+    end    
   end
 end
