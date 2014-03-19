@@ -23,4 +23,9 @@ FactoryGirl.define do
     postitable_type 'question'
     visible false
   end  
+  factory :event_plaza, class: "plaza" do
+    association :postitable, :factory => :event
+    postitable_type 'event'
+    visible false
+  end    
 end

@@ -30,5 +30,9 @@ FactoryGirl.define do
     description "제1교시 : Form Helpers (5) (정창훈)\n제2교시 : Debugging Rails Applications (1) (남승균)\n\n* NAVER 개발자 지원 프로그램\n* 강남 토즈2호점에 예약되어있습니다. 예약한 모임명은 \"NAVER개발자커뮤니티지원_RORLab_57회\" 입니다."
     latitude 37.5033250584
     longitude 127.024916778
+
+    after(:create) do |event|
+      event.plaza = FactoryGirl.create(:post_plaza, postitable_id: event.id, postitable_type: "event")
+    end      
   end
 end
