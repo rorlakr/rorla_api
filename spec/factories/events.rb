@@ -32,7 +32,7 @@ FactoryGirl.define do
     longitude 127.024916778
 
     after(:create) do |event|
-      event.plaza = FactoryGirl.create(:post_plaza, postitable_id: event.id, postitable_type: "event")
+      event.plaza = create(:event_plaza, postitable_id: event.id, postitable_type: "event")
     end      
   end
 end
