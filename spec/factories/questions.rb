@@ -17,7 +17,7 @@ FactoryGirl.define do
     content "Question Content"
     
     after(:create) do |question|
-      question.plaza = FactoryGirl.create(:question_plaza, postitable_id: question.id, postitable_type: "question")
+      question.plaza = create(:plaza_question, postitable_id: question.id, postitable_type: "question")
     end        
 
     factory :question_with_answers do
