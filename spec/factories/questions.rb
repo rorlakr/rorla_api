@@ -15,6 +15,10 @@ FactoryGirl.define do
   factory :question do
     title "Question title"
     content "Question Content"
+    
+    after(:create) do |question|
+      question.plaza = create(:plaza_question, postitable_id: question.id, postitable_type: "question")
+    end        
 
     factory :question_with_answers do
       ignore do
