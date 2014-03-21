@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20140321062252) do
     t.integer  "writer_id"
     t.boolean  "published",    default: false
     t.datetime "published_at"
-    t.integer  "hit"
+    t.integer  "hit",          default: 0
   end
 
   add_index "posts", ["writer_id"], name: "index_posts_on_writer_id"
