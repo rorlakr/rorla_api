@@ -17,10 +17,22 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
   validates :content, presence: true
 
+  before_save :set_published_at
+
   after_create :set_plaza_post
+
+
+  private
+  
+  def set_published_at
+    if (published == true || published == "true" || published == "1") && published_at.nil?
+      self.published_at = Time.now
+    elsif (published != true && published != "true" && published != "1") && published_at
+      self.published_at = nil
+    end
+  end
 
   def set_plaza_post
   	self.create_plaza
   end
-
 end

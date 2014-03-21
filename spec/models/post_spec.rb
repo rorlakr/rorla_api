@@ -29,6 +29,14 @@ describe Post do
     it "> Post 생성시 hit의 기본값은 0이다." do
       expect(build(:post).hit).to eq(0)
     end
+    it "> published가 false일때 published_at은 nil이다." do 
+      post = create(:post, published: false)
+      expect(post.published_at).to be_nil
+    end      
+    it "> published가 true일때 published_at에 Time이 입력된다." do 
+      post = create(:post, published: true)
+      expect(post.published_at).to be_a_kind_of(Time)
+    end          
   end
   describe "> 관계선언 검증" do
     it "> 4개의 Comment를 가지고 있다."
