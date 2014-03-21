@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140318035342) do
+ActiveRecord::Schema.define(version: 20140321062252) do
 
   create_table "answers", force: true do |t|
     t.text     "content"
@@ -68,7 +68,9 @@ ActiveRecord::Schema.define(version: 20140318035342) do
     t.string   "title"
     t.text     "content"
     t.integer  "writer_id"
-    t.boolean  "published",  default: false
+    t.boolean  "published",    default: false
+    t.datetime "published_at"
+    t.integer  "hit"
   end
 
   add_index "posts", ["writer_id"], name: "index_posts_on_writer_id"
