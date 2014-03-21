@@ -19,8 +19,9 @@ FactoryGirl.define do
     title "title"
     content "content"
 
-    after(:create) do |post|
-      post.plaza = create(:plaza_post, postitable_id: post.id, postitable_type: "post")
-    end    
+    # app/models.post.rb에 after_create 선언 해주었습니다.
+    # after(:create) do |post|
+    #   post.plaza = create(:plaza_post, postitable_id: post.id, postitable_type: "post")
+    # end    
   end
 end

@@ -17,4 +17,10 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
   validates :content, presence: true
 
+  after_create :set_plaza_post
+
+  def set_plaza_post
+  	self.create_plaza
+  end
+
 end
