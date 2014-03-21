@@ -23,9 +23,18 @@ describe Post do
     it "> Title이 없으면 유효하지 않다." do
       expect(build(:post)).to validate_presence_of :title
     end
+    it "> Title이 3글자 미만이면 유효하지 않다." do
+      expect(build(:invalid_post_by_min_title)).to_not be_valid
+    end
+    it "> Title이 255자를 초과하면 유효하지 않다." do
+      expect(build(:invalid_post_by_max_title)).to_not be_valid      
+    end
     it "> Content가 없으면 유효하지 않다." do
       expect(build(:post)).to validate_presence_of :content
     end
+    it "> Content가 10000자를 초과하면 유효하지 않다." do
+      expect(build(:invalid_post_by_max_content)).to_not be_valid      
+    end    
     it "> Post 생성시 hit의 기본값은 0이다." do
       expect(build(:post).hit).to eq(0)
     end
