@@ -75,8 +75,14 @@ describe User do
     it "> 다수의 question을 가질 수 있다." do
       expect(create(:user)).to have_many(:questions)
     end
+
+    it "> 다수의 answer를 가질 수 있다." do
+      expect(create(:user)).to have_many(:answers)
+    end
+
+
   end
 
-  
+
 
 end
