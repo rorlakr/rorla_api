@@ -34,7 +34,7 @@ describe Question do
       expect(create(:question)).to have_many(:answers)
     end
   end
-  
+
   describe "스코프 및 클래스 메소드 검증"
   describe "인스턴스 메소드 검증"
 end
