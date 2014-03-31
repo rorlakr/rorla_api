@@ -86,18 +86,6 @@ ActiveRecord::Schema.define(version: 20140321101916) do
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id"
 
-  create_table "scraps", force: true do |t|
-    t.string   "title",                      null: false
-    t.text     "description"
-    t.string   "url",                        null: false
-    t.boolean  "shared",      default: true
-    t.integer  "scraper_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "scraps", ["scraper_id"], name: "index_scraps_on_scraper_id"
-
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
