@@ -11,16 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321101916) do
+ActiveRecord::Schema.define(version: 20140331115522) do
 
   create_table "answers", force: true do |t|
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "question_id"
+    t.integer  "user_id"
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id"
 
   create_table "auth_tokens", force: true do |t|
     t.integer  "user_id"
@@ -85,18 +87,6 @@ ActiveRecord::Schema.define(version: 20140321101916) do
   end
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id"
-
-  create_table "scraps", force: true do |t|
-    t.string   "title",                      null: false
-    t.text     "description"
-    t.string   "url",                        null: false
-    t.boolean  "shared",      default: true
-    t.integer  "scraper_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "scraps", ["scraper_id"], name: "index_scraps_on_scraper_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

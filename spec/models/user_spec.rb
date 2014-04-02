@@ -70,4 +70,19 @@ describe User do
       expect(user).to_not be_valid
     end
   end
+
+  describe "관계선언 검증" do
+    it "> 다수의 question을 가질 수 있다." do
+      expect(create(:user)).to have_many(:questions)
+    end
+
+    it "> 다수의 answer를 가질 수 있다." do
+      expect(create(:user)).to have_many(:answers)
+    end
+
+
+  end
+
+
+
 end
