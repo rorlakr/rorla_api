@@ -20,6 +20,6 @@ FactoryGirl.define do
     after(:create) do |question|
       question.plaza = create(:plaza_question, postitable_id: question.id, postitable_type: "question")
     end
-
+    
   end
 end
