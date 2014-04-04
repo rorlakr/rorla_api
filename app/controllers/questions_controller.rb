@@ -5,9 +5,12 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :update, :destroy]
 
   def index
+    @questions = Question.all
+    render json: @questions
   end
 
   def show
+    render json: @question
   end
 
   def create
@@ -17,6 +20,8 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
+    @question.destroy
+    render json: { message: "destroyed" }
   end
 
   private
