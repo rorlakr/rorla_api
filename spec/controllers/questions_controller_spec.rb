@@ -20,13 +20,32 @@ describe QuestionsController do
   end
 
   describe 'POST #create' do
-    context "(params가 유효할 때)" do
-      it "> 새로운 question을 생성한다."
-      it "> 새로운 @question instance에 할당한다."
+    context "1) params가 유효할 때" do
+      it "> 새로운 question을 생성한다." do
+        expect {
+          post :create, { question: attributes_for(:question) }
+        }.to change(Question, :count).by(1)
+      end
+
+      it "> 새로운 question instance에 할당한다." do
+        post :create, { question: attributes_for(:question) }
+        expect(assigns(:question)).to be_a(Question)
+        expect(assigns(:question)).to_not be_new_record
+      end
     end
 
-    context "(params가 유효하지 않을 때)" do
-      it "> 새로운 quesiton을 생성하지 않는다."
+    context "2) params가 유효하지 않을 때" do
+      it "> 새로운 quesiton을 생성하지 않는다." do
+        expect {
+          post :create, { question: attributes_for(:question_invalid) }
+        }.to_not change(Question, :count)
+      end
+
+      it "> 새로운 question instance에 할당한다." do
+        post :create, { question: attributes_for(:question_invalid) }
+        expect(assigns(:question)).to be_a(Question)
+        expect(assigns(:question)).to be_new_record
+      end
     end
 
   end

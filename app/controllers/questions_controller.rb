@@ -14,6 +14,8 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    @question = Question.create(question_params)
+    render json: @question
   end
 
   def update
@@ -29,4 +31,7 @@ class QuestionsController < ApplicationController
       @question = Question.find(params[:id])
     end
 
+    def question_params
+      params.require(:question).permit(:title, :content)
+    end
 end
