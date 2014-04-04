@@ -52,12 +52,29 @@ describe QuestionsController do
 
   describe 'PATCH #update' do
     context "(params가 유효할 때)" do
-      it "> question을 업데이트한다."
-      it "> 새로운 @question instance에 할당한다."
+      it "> question을 업데이트한다." do
+        question = create(:question)
+        patch :update, id: question, question: attributes_for(:question, title: "Wonderfulday isn't it?", content: "Yes!!!")
+        question.reload
+        expect(question.title).to eq("Wonderfulday isn't it?")
+        expect(question.content).to eq("Yes!!!")
+      end
+
+      it "> 새로운 @question instance에 할당한다." do
+        question = create(:question)
+        patch :update, id: question, question: attributes_for(:question)
+        expect(assigns(:question)).to eq question
+      end
     end
 
     context "(params가 유효하지 않을 때)" do
-      it "> quesiton을 업데이트하지 않는다."
+      it "> quesiton을 업데이트하지 않는다." do
+        question = create(:question, title: "Question Title", content: "Question Content")
+        patch :update, id: question, question: attributes_for(:question_invalid)
+        question.reload
+        expect(question.title).to eq("Question Title")
+        expect(question.content).to eq("Question Content")
+      end
     end
   end
 
