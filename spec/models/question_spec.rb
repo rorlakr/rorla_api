@@ -33,6 +33,11 @@ describe Question do
     it "> 다수의 answer를 가질 수 있다." do
       expect(create(:question)).to have_many(:answers)
     end
+
+    it "> has_one :plaza, dependent: :destroy" do
+      expect(create(:question)).to have_one(:plaza).dependent(:destroy)
+    end
+
   end
 
   describe "스코프 및 클래스 메소드 검증"

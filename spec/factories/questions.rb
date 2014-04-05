@@ -17,19 +17,9 @@ FactoryGirl.define do
     title "Question title"
     content "Question Content"
     
-    after(:create) do |question|
-      question.plaza = create(:plaza_question, postitable_id: question.id, postitable_type: "question")
-    end        
 
-    factory :question_with_answers do
-      ignore do
-        answers_count 1
-      end
-
-      after(:create) do |question, evaluator|
-        create_list(:answer, evaluator.answers_count, question: question)
-      end
-
+    factory :question_invalid do
+      title nil
     end
 
   end
