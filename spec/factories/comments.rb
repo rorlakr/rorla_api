@@ -11,5 +11,7 @@
 
 FactoryGirl.define do
   factory :comment do
+    title "title"
+    content "content"
   end
 end
