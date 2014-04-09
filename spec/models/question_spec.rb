@@ -7,6 +7,7 @@
 #  content    :text
 #  created_at :datetime
 #  updated_at :datetime
+#  user_id    :integer
 #
 
 require 'spec_helper'
@@ -29,15 +30,16 @@ describe Question do
   end
 
   describe "관계선언 검증" do
-    it "> answer를 가질 수 있다." do
-      expect(create(:question_with_answers).answers.first).to be_valid
+    it "> 다수의 answer를 가질 수 있다." do
+      expect(create(:question)).to have_many(:answers)
     end
 
-    it "> 다수의 answer를 가질 수 있다." do
-      expect(create(:question_with_answers, answers_count: 5).answers.count).to eq 5
+    it "> has_one :plaza, dependent: :destroy" do
+      expect(create(:question)).to have_one(:plaza).dependent(:destroy)
     end
 
   end
+
   describe "스코프 및 클래스 메소드 검증"
   describe "인스턴스 메소드 검증"
 end

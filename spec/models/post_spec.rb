@@ -2,13 +2,16 @@
 #
 # Table name: posts
 #
-#  id         :integer          not null, primary key
-#  created_at :datetime
-#  updated_at :datetime
-#  title      :string(255)
-#  content    :text
-#  writer_id  :integer
-#  published  :boolean          default(FALSE)
+#  id           :integer          not null, primary key
+#  created_at   :datetime
+#  updated_at   :datetime
+#  title        :string(255)
+#  content      :text
+#  writer_id    :integer
+#  published    :boolean          default(FALSE)
+#  published_at :datetime
+#  hit          :integer          default(0)
+#  deleted_at   :datetime
 #
 
 require 'spec_helper'
@@ -23,13 +26,30 @@ describe Post do
     it "> Title이 없으면 유효하지 않다." do
       expect(build(:post)).to validate_presence_of :title
     end
+    it "> Title이 3글자 이상 255글자 이하이어야 한다." do
+      should ensure_length_of(:title).is_at_least(3).is_at_most(255)
+    end
     it "> Content가 없으면 유효하지 않다." do
       expect(build(:post)).to validate_presence_of :content
     end
-    it "> Post 생성시 hit는 0이다."
-    it "> 1개의 User를 가지고 있다."
+    it "> Content가 0글자 이상 10000글자 이하이어야 한다." do
+      should ensure_length_of(:content).is_at_least(0).is_at_most(10000)
+    end
+    it "> Post 생성시 hit의 기본값은 0이다." do
+      expect(build(:post).hit).to eq(0)
+    end
+    it "> published가 false일때 published_at은 nil이다." do
+      post = create(:post, published: false)
+      expect(post.published_at).to be_nil
+    end
+    it "> published가 true일때 published_at에 Time이 입력된다." do
+      post = create(:post, published: true)
+      expect(post.published_at).to be_a_kind_of(Time)
+    end
   end
   describe "> 관계선언 검증" do
-    it "> 4개의 Comment를 가지고 있다."
+    it "> has_one :plaza, dependent: :destroy" do
+      expect(create(:post)).to have_one(:plaza).dependent(:destroy)
+    end
   end
 end

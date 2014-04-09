@@ -2,12 +2,12 @@
 #
 # Table name: plazas
 #
-#  id            :integer          not null, primary key
+#  id              :integer          not null, primary key
 #  postitable_id   :integer
 #  postitable_type :string(255)
-#  visible       :boolean
-#  created_at    :datetime
-#  updated_at    :datetime
+#  visible         :boolean
+#  created_at      :datetime
+#  updated_at      :datetime
 #
 
 require 'spec_helper'
@@ -22,6 +22,10 @@ describe Plaza do
       question = create(:question)      
       expect(question.plaza).to be_valid
     end    
+    it "> Event 객체를 유효한 데이터로 생성시 Plaza에 추가된다." do
+      event = create(:event)      
+      expect(event.plaza).to be_valid
+    end       
   end
   describe "유효성 검증"
   describe "관계선언 검증"

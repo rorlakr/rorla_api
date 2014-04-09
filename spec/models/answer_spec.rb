@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: answers
+#
+#  id          :integer          not null, primary key
+#  content     :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#  question_id :integer
+#
+
 require 'spec_helper'
 
 describe Answer do

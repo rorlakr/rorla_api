@@ -7,13 +7,20 @@
 #  content    :text
 #  created_at :datetime
 #  updated_at :datetime
+#  user_id    :integer
 #
 
 class Question < ActiveRecord::Base
+  after_create :set_plaza_question
+
   has_one :plaza, :as => :postitable, :dependent => :destroy
-  
+  has_many :answers
+
   validates_presence_of :title, :content
 
-  has_many :answers
+  private
+    def set_plaza_question
+      self.create_plaza
+    end
   
 end

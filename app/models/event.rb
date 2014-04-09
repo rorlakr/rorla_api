@@ -19,5 +19,8 @@
 #
 
 class Event < ActiveRecord::Base
+    has_one :plaza, :as => :postitable, :dependent => :destroy
+
     validates_presence_of :name, :start_time, :end_time, :location, :fb_event_id, :latitude, :longitude
+
 end
