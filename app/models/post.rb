@@ -16,6 +16,7 @@
 
 class Post < ActiveRecord::Base
   has_one :plaza, :as => :postitable, :dependent => :destroy
+  has_many :comments, :as => :commentable, :dependent => :destroy
 
   validates :title, presence: true, :length => { :minimum => 3, :maximum => 255 }
   validates :content, presence: true, :length => { :minimum => 0, :maximum => 10000 }
