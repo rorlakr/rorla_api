@@ -15,8 +15,26 @@ require 'spec_helper'
 describe Comment do
   describe "> 모델 객체의 생성" do
     it "> 유효한 데이터로 생성한 Comment 객체는 유효하다." do
-			expect(create(:comment)).to be_valid
- 		end
+      expect(create(:comment)).to be_valid
+    end
+  end
+
+  describe "> Association 검증" do
+    it "> belongs_to :post" do
+      post = create(:post)
+      comment = create(:comment_to_post, commentable: post)
+      expect(comment.commentable).to eq post
+    end
+    it "> belongs_to :question" do
+      question = create(:question)
+      comment = create(:comment_to_question, commentable: question)
+      expect(comment.commentable).to eq question
+    end
+    it "> belongs_to :answer" do
+      answer = create(:answer)
+      comment = create(:comment_to_answer, commentable: answer)
+      expect(comment.commentable).to eq answer
+    end
 
   end
 
