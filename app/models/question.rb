@@ -14,6 +14,8 @@ class Question < ActiveRecord::Base
   after_create :set_plaza_question
 
   has_one :plaza, :as => :postitable, :dependent => :destroy
+  has_many :comments, :as => :commentable, :dependent => :destroy
+
   has_many :answers
 
   validates_presence_of :title, :content
