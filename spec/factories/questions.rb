@@ -14,13 +14,7 @@
 
 FactoryGirl.define do
   factory :question do
-    title "Question title"
+    title "Question Title"
     content "Question Content"
-    
-
-    factory :question_invalid do
-      title nil
-    end
-
   end
 end
