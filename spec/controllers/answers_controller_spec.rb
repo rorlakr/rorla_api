@@ -39,14 +39,14 @@ describe AnswersController do
     context "2) params가 유효하지 않을 때" do
       it "> 새로운 answer를 생성하지 않는다." do
         expect{
-	  post :create, answer: valid_attributes 
-	}.to change(Answer, :count)
+          post :create, answer: valid_attributes 
+        }.to change(Answer, :count)
       end
 
       it "> 새로운 answer로 instance 변수를 할당한다." do
         post :create, answer: invalid_attributes 
-	expect(assigns(:answer)).to be_a(Answer)
-	expect(assigns(:answer)).to be_new_record
+        expect(assigns(:answer)).to be_a(Answer)
+        expect(assigns(:answer)).to be_new_record
       end
     end
   end
@@ -55,28 +55,28 @@ describe AnswersController do
     context "1) params가 유효할 때" do
       it "> 요청한 answer를 업데이트한다." do
         patch :update, id: answer, answer: attributes_for(:answer, content: "Answer content changed")
-	answer.reload
-	expect(answer.content).to eq "Answer content changed"
+	      answer.reload
+        expect(answer.content).to eq "Answer content changed"
       end
       
       it "> 요청한 answer로 instance 변수를 할당한다." do
-	patch :update, id: answer, answer: attributes_for(:answer, content: "Answer content changed")
-	answer.reload
-	expect(assigns(:answer)).to eq answer
+        patch :update, id: answer, answer: attributes_for(:answer, content: "Answer content changed")
+        answer.reload
+        expect(assigns(:answer)).to eq answer
       end
     end
 
     context "2) params가 유효하지 않을 때" do
       it "> 요청한 answer를 업데이트하지 않는다." do
-	patch :update, id: answer, answer: invalid_attributes 
-	answer.reload
-	expect(answer.content).to eq "Answer Content"
+        patch :update, id: answer, answer: invalid_attributes 
+        answer.reload
+        expect(answer.content).to eq "Answer Content"
       end
 
       it "> 요청한 answer로 instance 변수를 할당한다." do
-	patch :update, id: answer, answer: invalid_attributes 
-	answer.reload
-	expect(assigns(:answer)).to eq answer
+        patch :update, id: answer, answer: invalid_attributes 
+        answer.reload
+        expect(assigns(:answer)).to eq answer
       end
     end
   end
