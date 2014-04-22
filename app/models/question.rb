@@ -16,7 +16,7 @@ class Question < ActiveRecord::Base
   has_one :plaza, :as => :postitable, :dependent => :destroy
   has_many :comments, :as => :commentable, :dependent => :destroy
 
-  has_many :answers
+  has_many :answers, dependent: :destroy
 
   validates_presence_of :title, :content
 
@@ -24,5 +24,5 @@ class Question < ActiveRecord::Base
     def set_plaza_question
       self.create_plaza
     end
-  
+
 end
