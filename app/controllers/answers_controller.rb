@@ -2,10 +2,11 @@ class AnswersController < ApplicationController
   # 임시 테스트용
   skip_before_filter :authenticate_user!
 
+  before_action :set_question
   before_action :set_answer, only: [:show, :update, :destroy]
 
   def index
-    @answers = Answer.all
+    @answers = @question.answers
     render json: @answers
   end
 
@@ -14,7 +15,7 @@ class AnswersController < ApplicationController
   end
 
   def create
-    @answer = Answer.create(answer_params)
+    @answer = @question.answers.create(answer_params)
     render json: @answer
   end
 
@@ -29,8 +30,12 @@ class AnswersController < ApplicationController
   end
 
   private
+    def set_question
+      @question = Question.find(params[:question_id])
+    end
+
     def set_answer
-      @answer = Answer.find(params[:id])
+      @answer = @question.answers.find(params[:id])
     end
 
     def answer_params
