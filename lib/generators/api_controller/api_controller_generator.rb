@@ -1,6 +1,6 @@
 class ApiControllerGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
-  argument :name, type: :string, default: "apicontroller"
+  argument :name, type: :string, required: true
 
   def generate_controller
     template "api_controller.rb", "app/controllers/#{controller_name}_controller.rb"
