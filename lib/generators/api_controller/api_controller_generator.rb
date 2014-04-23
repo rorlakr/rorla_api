@@ -18,7 +18,7 @@ class ApiControllerGenerator < Rails::Generators::Base
   end
 
   def model_name
-    controller_name[0...-1]
+    controller_name.singularize
   end
 
   def model_class
