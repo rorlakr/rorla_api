@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 20140410141400) do
 
   add_index "auth_tokens", ["user_id"], name: "index_auth_tokens_on_user_id"
 
+  create_table "bulletins", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "comments", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
