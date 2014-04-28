@@ -9,42 +9,42 @@ describe QuestionsController do
   describe 'GET #index' do
     it "> 모든 Question으로 instance 변수를 할당한다." do
       questions = [question, create(:question)]
-      get :index
+      do_index
       expect(assigns(:questions)).to match_array(questions)
     end
   end
 
   describe 'GET #show' do
     it "> 요청한 Question으로 instance 변수를 할당한다." do
-      get :show, id: question
+      do_show
       expect(assigns(:question)).to eq question
     end
   end
 
   describe 'POST #create' do
     context "1) params가 유효할 때" do
-      it "> 새로운 question을 생성한다." do
+      it "> 새로운 Question을 생성한다." do
         expect {
-          post :create, question: valid_attributes
+          do_post(valid_attributes)
         }.to change(Question, :count).by(1)
       end
 
-      it "> 새로운 question으로 instance 변수를 할당한다." do
-        post :create, question: valid_attributes
+      it "> 새로운 Question으로 instance 변수를 할당한다." do
+        do_post(valid_attributes)
         expect(assigns(:question)).to be_a(Question)
         expect(assigns(:question)).to_not be_new_record
       end
     end
 
     context "2) params가 유효하지 않을 때" do
-      it "> 새로운 quesiton을 생성하지 않는다." do
+      it "> 새로운 Quesiton을 생성하지 않는다." do
         expect {
-          post :create, question: invalid_attributes
+          do_post(invalid_attributes)
         }.to_not change(Question, :count)
       end
 
-      it "> 새로운 question을 instance 변수에 할당한다." do
-        post :create, question: invalid_attributes
+      it "> 새로운 Question을 instance 변수에 할당한다." do
+        do_post(invalid_attributes)
         expect(assigns(:question)).to be_a(Question)
         expect(assigns(:question)).to be_new_record
       end
@@ -54,43 +54,68 @@ describe QuestionsController do
   describe 'PATCH #update' do
     context "1) params가 유효할 때" do
       it "> 요청한 question을 업데이트한다." do
-        patch :update, id: question, question: attributes_for(:question, title: "Wonderfulday isn't it?", content: "Yes!!!")
-        question.reload
+        do_patch(attributes_for(:question, title: "Wonderfulday isn't it?", content: "Yes!!!"))
         expect(question.title).to eq("Wonderfulday isn't it?")
         expect(question.content).to eq("Yes!!!")
       end
 
       it "> 요청한 question을 instance 변수에 할당한다." do
-        patch :update, id: question, question: valid_attributes
-        question.reload
+        do_patch(attributes_for(:question, title: "Wonderfulday isn't it?", content: "Yes!!!"))
         expect(assigns(:question)).to eq question
       end
     end
 
     context "2) params가 유효하지 않을 때" do
       it "> 요청한 quesiton을 업데이트하지 않는다." do
-        patch :update, id: question, question: invalid_attributes
-        question.reload
+        do_patch(invalid_attributes)
         expect(question.title).to eq("Question Title")
         expect(question.content).to eq("Question Content")
       end
 
       it "> 요청한 question을 instance 변수에 할당한다." do
-        patch :update, id: question, question: invalid_attributes
-        question.reload
+        do_patch(invalid_attributes)
         expect(assigns(:question)).to eq question
       end
     end
-    
   end
 
   describe 'DELETE #destroy' do
-    it "> 요청한 question을 삭제한다." do
-      question
+    before(:each) { question }
+
+    it "> 요청한 Question을 삭제한다." do
       expect {
-        delete :destroy, id: question
+        do_delete
       }.to change(Question, :count).by(-1)
+    end
+
+    it "> 요청한 Question으로 instance 변수를 할당한다." do
+      do_delete
+      expect(assigns(:question)).to eq question
     end
   end
 
+
+
+  private
+
+  def do_index
+    get :index
+  end
+
+  def do_show
+    get :show, id: question
+  end
+
+  def do_post(attributes={})
+    post :create, question: attributes
+  end
+
+  def do_patch(attributes={})
+    patch :update, id: question, question: attributes
+    question.reload
+  end
+  
+  def do_delete
+    delete :destroy, id: question
+  end
 end
