@@ -15,10 +15,12 @@ feature "Answer management" do
     create(:answer, question: question, user: user,
                     id: 3702, content: "Answer 2",
                     created_at: datetime, updated_at: datetime)
+    user.confirm!
+    @header = { "X-Auth-Email" => user.email, "X-Auth-Token" => user.generate_auth_token! }
   end
 
   scenario "> 한 질문에 달린 답변 목록을 얻는다" do
-    get "/questions/37/answers.json"
+    get "/questions/37/answers.json", nil, @header
     expect(json).to include({
       id: 3701,
       question_id: 37,
@@ -38,7 +40,7 @@ feature "Answer management" do
   end
 
   scenario "> 한 답변의 상세 정보를 얻는다" do
-    get "/questions/37/answers/3701.json"
+    get "/questions/37/answers/3701.json", nil, @header
     expect(json).to include({
       id: 3701,
       question_id: 37,
@@ -50,21 +52,21 @@ feature "Answer management" do
   end
 
   scenario "> 질문에 대한 답변을 작성한다" do
-    post "/questions/37/answers.json", answer: {content: "Do It Yourself"}
+    post "/questions/37/answers.json", {answer: {content: "Do It Yourself"}}, @header
     expect(json).to include({
       content: "Do It Yourself"
     }.with_indifferent_access)
   end
 
   scenario "> 답변을 수정한다" do
-    put "/questions/37/answers/3701.json", answer: {content: "Hacked"}
+    put "/questions/37/answers/3701.json", {answer: {content: "Hacked"}}, @header
     expect(json).to include({
       content: "Hacked"
     }.with_indifferent_access)
   end
 
   scenario "> 답변을 삭제한다" do
-    delete "/questions/37/answers/3701.json"
+    delete "/questions/37/answers/3701.json", nil, @header
     expect(json).to include({
       message: "destroyed"
     }.with_indifferent_access)
