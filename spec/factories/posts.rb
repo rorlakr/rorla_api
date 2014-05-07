@@ -19,8 +19,8 @@
 FactoryGirl.define do
   factory :post do
 
-    title "title"
-    content "content"
+    title "post title"
+    content "post content"
  
     # app/models.post.rb에 after_create 선언 해주었습니다.
     # after(:create) do |post|
