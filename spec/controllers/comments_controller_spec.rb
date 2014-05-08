@@ -2,14 +2,16 @@ require 'spec_helper'
 
 describe CommentsController do
 
-  let(:post) { create(:post) }
-  let(:comment) {  create(:comment_to_post, commentable: post)  }
+  let(:post_create) { create(:post) }
+  #let(:comment) {  create(:comment_to_post, commentable: post_create)  }
+  let(:comment) {  create(:comment, commentable: post_create)  }
   let(:valid_attributes) { attributes_for(:comment) }
   let(:invalid_attributes) { attributes_for(:comment, content: nil) }
 
   describe "GET #index" do
     it "> 모든 Comment들을 @comments에 할당한다." do
-      comments = [comment, create(:comment, post: post)]
+      #comments = [comment, create(:comment_to_post, commentable: post_create)]
+      comments = [comment, create(:comment, commentable: post_create)]
       get :index
       expect(assigns(:comments)).to match_array eq(comments)
     end
@@ -17,7 +19,9 @@ describe CommentsController do
 
   describe "GET #show" do
     it "> 요청한 Comment로 instance 변수를 할당한다." do
-      get :show, post_id: post.id, id: comment
+ 
+#       get :show, post_id: post.id, id: comment
+     get :show, post_create_id: post_create.id, id: comment
       expect(assigns(:post)).to eq(post)
       expect(assigns(:comment)).to eq comment
     end 
