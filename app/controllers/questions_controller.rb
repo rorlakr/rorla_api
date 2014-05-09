@@ -1,7 +1,4 @@
 class QuestionsController < ApplicationController
-  # 임시 테스트용
-  skip_before_filter :authenticate_user!
-
   before_action :set_question, only: [:show, :update, :destroy]
 
   def index
