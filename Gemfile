@@ -24,7 +24,7 @@ group :development, :test do
   gem "rspec-rails", "~> 2.14.0"
   gem "factory_girl_rails", "~> 4.2.1"
   gem 'guard', '~> 2'
-  gem 'guard-rspec',require: false
+  gem 'guard-rspec', require: false
   gem 'spring'
   gem "spring-commands-rspec"
 end
@@ -32,6 +32,7 @@ end
 group :test do
   gem "faker", "~> 1.1.2"
   gem "capybara", "~> 2.1.0"
+  gem 'capybara-json'
   gem "database_cleaner", "~> 1.0.1"
   # gem "launchy", "~> 2.3.0"
   # gem "selenium-webdriver", "~> 2.35.1"

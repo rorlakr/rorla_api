@@ -24,7 +24,7 @@ describe Answer do
       expect(create(:answer)).to validate_presence_of :content
     end
   end
-  
+
   describe "관계선언 검증"
   describe "스코프 및 클래스 메소드 검증"
   describe "인스턴스 메소드 검증"

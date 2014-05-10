@@ -11,11 +11,10 @@ RorlaApi::Application.routes.draw do
                                  :confirmations => "users/confirmations" }
     resources :users, except: [ :new, :edit ]
 
-    resources :questions, only: [ :index, :show, :create, :update, :destroy ]
-    resources :answers, only: [ :index, :show, :create, :update, :destroy ]
-  end
-    # The priority is based upon order of creation: first created -> highest priority.
-    # See how all your routes lay out with "rake routes".
+    resources :questions, only: [ :index, :show, :create, :update, :destroy ] do
+      resources :answers, only: [ :index, :show, :create, :update, :destroy ]
+    end
+
 
     # You can have the root of your site routed with "root"
     # root 'welcome#index'
@@ -68,4 +67,6 @@ RorlaApi::Application.routes.draw do
     #     # (app/controllers/admin/products_controller.rb)
     #     resources :products
     #   end
+
+  end
 end
