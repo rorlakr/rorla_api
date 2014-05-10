@@ -33,9 +33,10 @@ group :test do
   gem "faker", "~> 1.1.2"
   gem "capybara", "~> 2.1.0"
   gem "database_cleaner", "~> 1.0.1"
-  gem "launchy", "~> 2.3.0"
-  gem "selenium-webdriver", "~> 2.35.1"
+  # gem "launchy", "~> 2.3.0"
+  # gem "selenium-webdriver", "~> 2.35.1"
   gem "shoulda-matchers"
+  gem 'simplecov', :require => false
 end
 
 # 모델관계를 깔끔하게 다이어그램으로 그려줍니다. PDF출력 제공

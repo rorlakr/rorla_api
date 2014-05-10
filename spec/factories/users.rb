@@ -24,7 +24,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :user do
+  factory :user, aliases: [:writer] do
     email { Faker::Internet.email }
     password { 'password'}
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140410141400) do
+ActiveRecord::Schema.define(version: 20140423003616) do
 
   create_table "answers", force: true do |t|
     t.text     "content"
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 20140410141400) do
   end
 
   add_index "auth_tokens", ["user_id"], name: "index_auth_tokens_on_user_id"
+
+  create_table "bundlelinks", force: true do |t|
+    t.string   "title",                      null: false
+    t.text     "description"
+    t.integer  "writer_id",                  null: false
+    t.boolean  "shared",      default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bundlelinks", ["writer_id"], name: "index_bundlelinks_on_writer_id"
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -60,6 +71,20 @@ ActiveRecord::Schema.define(version: 20140410141400) do
     t.text     "material"
     t.boolean  "modifiable",                            default: false
   end
+
+  create_table "favlinks", force: true do |t|
+    t.string   "title",                        null: false
+    t.text     "description"
+    t.string   "linkurl",                      null: false
+    t.integer  "writer_id"
+    t.boolean  "shared",        default: true
+    t.integer  "bundlelink_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favlinks", ["bundlelink_id"], name: "index_favlinks_on_bundlelink_id"
+  add_index "favlinks", ["writer_id"], name: "index_favlinks_on_writer_id"
 
   create_table "plazas", force: true do |t|
     t.integer  "postitable_id"
