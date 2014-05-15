@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140410141400) do
+ActiveRecord::Schema.define(version: 20140515041020) do
 
   create_table "answers", force: true do |t|
     t.text     "content"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20140410141400) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "bulletins", ["title"], name: "index_bulletins_on_title", unique: true
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -88,6 +90,7 @@ ActiveRecord::Schema.define(version: 20140410141400) do
     t.datetime "published_at"
     t.integer  "hit",          default: 0
     t.datetime "deleted_at"
+    t.integer  "bulletin_id"
   end
 
   add_index "posts", ["writer_id"], name: "index_posts_on_writer_id"
