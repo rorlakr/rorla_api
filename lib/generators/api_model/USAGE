@@ -1,8 +1,12 @@
 Description:
-    Explain the generator
+    Renewal 프로젝트에 사용되는 Model Spec을 한글로 구성하였다.
 
 Example:
-    rails generate api_model Thing
+    rails generate api_model [NAME]
 
-    This will create:
-        what/will/it/create
+    생성되는 파일:
+        db/migrate/[TIMESTAMP]_create_[NAME]s.rb
+        app/models/[NAME].rb
+        spec/factories/[NAME]s.rb
+        spec/models/[NAME]_spec.rb
+

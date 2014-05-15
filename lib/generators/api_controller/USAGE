@@ -1,8 +1,13 @@
 Description:
-    Explain the generator
+    Renewal 프로젝트에 사용되는 Controller Spec을 한글로 구성하였다.
 
 Example:
-    rails generate api_controller Thing
+    rails generate api_controller [NAME]
 
-    This will create:
-        what/will/it/create
+    생성되는 파일:
+        app/controllers/[NAME]_controller.rb
+        spec/controllers/[NAME]_controller_spec.rb
+
+    routes 추가:
+        resources :[NAME], only: [:index, :show, :create, :update, :destroy]
+

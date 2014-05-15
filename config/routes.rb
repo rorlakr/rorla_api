@@ -1,5 +1,6 @@
 RorlaApi::Application.routes.draw do
 
+  resources :tasks, only: [ :index, :show, :create, :update, :destroy ]
   scope :api do
     devise_for :users,
                :path_names => {

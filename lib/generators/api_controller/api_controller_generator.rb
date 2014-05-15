@@ -5,6 +5,7 @@ class ApiControllerGenerator < Rails::Generators::Base
   def generate_controller
     template "api_controller.rb", "app/controllers/#{controller_name}_controller.rb"
     template "api_controller_spec.rb", "spec/controllers/#{controller_name}_controller_spec.rb"
+    route "resources :#{controller_name}, only: [:index, :show, :create, :update, :destroy]"
   end
   
   private
