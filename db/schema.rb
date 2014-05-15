@@ -42,6 +42,17 @@ ActiveRecord::Schema.define(version: 20140515041020) do
 
   add_index "bulletins", ["title"], name: "index_bulletins_on_title", unique: true
 
+  create_table "bundlelinks", force: true do |t|
+    t.string   "title",                      null: false
+    t.text     "description"
+    t.integer  "writer_id",                  null: false
+    t.boolean  "shared",      default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bundlelinks", ["writer_id"], name: "index_bundlelinks_on_writer_id"
+
   create_table "comments", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -69,6 +80,20 @@ ActiveRecord::Schema.define(version: 20140515041020) do
     t.text     "material"
     t.boolean  "modifiable",                            default: false
   end
+
+  create_table "favlinks", force: true do |t|
+    t.string   "title",                        null: false
+    t.text     "description"
+    t.string   "linkurl",                      null: false
+    t.integer  "writer_id"
+    t.boolean  "shared",        default: true
+    t.integer  "bundlelink_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favlinks", ["bundlelink_id"], name: "index_favlinks_on_bundlelink_id"
+  add_index "favlinks", ["writer_id"], name: "index_favlinks_on_writer_id"
 
   create_table "plazas", force: true do |t|
     t.integer  "postitable_id"

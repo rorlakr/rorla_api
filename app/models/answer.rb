@@ -7,6 +7,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  question_id :integer
+#  user_id     :integer
 #
 
 class Answer < ActiveRecord::Base

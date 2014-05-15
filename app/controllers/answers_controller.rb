@@ -1,7 +1,4 @@
 class AnswersController < ApplicationController
-  # 임시 테스트용
-  skip_before_filter :authenticate_user!
-
   before_action :set_question
   before_action :set_answer, only: [:show, :update, :destroy]
 
