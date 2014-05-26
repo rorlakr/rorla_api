@@ -36,12 +36,12 @@ describe AnswersController do
         context "1) params가 유효할 때" do
           it "> 새로운 Answer를 생성한다." do
             expect{
-              do_post(valid_attributes)
+              do_post valid_attributes
             }.to change(question.answers, :count).by(1)
           end
 
           it "> 요청한 Question과 새로운 Answer로 instance 변수를 할당한다." do
-            do_post(valid_attributes)
+            do_post valid_attributes
             expect(assigns(:question)).to eq(question)
             expect(assigns(:answer)).to be_a(Answer)
             expect(assigns(:answer)).to_not be_new_record
@@ -51,12 +51,12 @@ describe AnswersController do
         context "2) params가 유효하지 않을 때" do
           it "> 새로운 Answer를 생성하지 않는다." do
             expect{
-              do_post(invalid_attributes)
+              do_post invalid_attributes
             }.to_not change(Answer, :count)
           end
 
           it "> 요청한 Question과 생성하지 못한 Answer로 instance 변수를 할당한다." do
-            do_post(invalid_attributes)
+            do_post invalid_attributes
             expect(assigns(:question)).to eq(question)
             expect(assigns(:answer)).to be_a(Answer)
             expect(assigns(:answer)).to be_new_record
@@ -67,12 +67,12 @@ describe AnswersController do
       describe 'PATCH #update' do
         context "1) params가 유효할 때" do
           it "> 요청한 Answer를 업데이트한다." do
-            do_patch(attributes_for(:answer, content: "Answer content changed"))
+            do_patch attributes_for(:answer, content: "Answer content changed")
             expect(answer.content).to eq "Answer content changed"
           end
           
           it "> 요청한 Question과 Answer로 instance 변수를 할당한다." do
-            do_patch(attributes_for(:answer, content: "Answer content changed"))
+            do_patch attributes_for(:answer, content: "Answer content changed")
             expect(assigns(:question)).to eq(question)
             expect(assigns(:answer)).to eq answer
           end
@@ -80,12 +80,12 @@ describe AnswersController do
 
         context "2) params가 유효하지 않을 때" do
           it "> 요청한 answer를 업데이트하지 않는다." do
-            do_patch(invalid_attributes)
+            do_patch invalid_attributes
             expect(answer.content).to eq "Answer Content"
           end
 
           it "> 요청한 Question과 Answer로 instance 변수를 할당한다." do
-            do_patch(invalid_attributes)
+            do_patch invalid_attributes
             expect(assigns(:question)).to eq(question)
             expect(assigns(:answer)).to eq answer
           end
@@ -94,7 +94,7 @@ describe AnswersController do
 
       describe 'DELETE #destroy' do
         before(:each) do
-          @answer = create(:answer, question: question)
+          answer
         end
 
         it "> 요청한 answer를 삭제한다." do
@@ -106,32 +106,46 @@ describe AnswersController do
         it "> 요청한 Question과 삭제된 Answer로 instance 변수를 할당한다." do
           do_delete
           expect(assigns(:question)).to eq(question)
-          expect(assigns(:answer)).to eq(@answer)
+          expect(assigns(:answer)).to eq(answer)
         end
       end
     end
 
     context "> 비로그인 상태" do
       describe 'GET #index' do
-        it "> 비로그인 메시지를 할당한다."
+        it "> 상태 코드 401(권한 없음)을 할당한다." do
+          do_index
+          expect(response.status).to be 401
+        end
       end
 
       describe 'GET #show' do
-        it "> 비로그인 메시지를 할당한다."
+        it "> 상태 코드 401(권한 없음)을 할당한다." do
+          do_show
+          expect(response.status).to be 401
+        end
       end
 
       describe 'POST #create' do
-        it "> 비로그인 메시지를 할당한다."
+        it "> 상태 코드 401(권한 없음)을 할당한다." do
+          do_post valid_attributes
+          expect(response.status).to be 401
+        end
       end
 
       describe 'PATCH #update' do
-        it "비로그인 메시지를 할당한다."
+        it "> 상태 코드 401(권한 없음)을 할당한다." do
+          do_patch valid_attributes
+          expect(response.status).to be 401
+        end
       end
 
       describe 'DELETE #destroy' do
-        it "비로그인 메시지를 할당한다."
+        it "> 상태 코드 401(권한 없음)을 할당한다." do
+          do_delete
+          expect(response.status).to be 401
+        end
       end
-
     end
   end
 
@@ -140,25 +154,25 @@ describe AnswersController do
   private
 
   def do_index
-    get :index, question_id: question.id
+    get :index, question_id: question.id, format: :json
   end
 
   def do_show
-    get :show, question_id: question.id, id: answer
+    get :show, question_id: question.id, id: answer, format: :json
   end
 
   def do_post(attributes={})
-    post :create, question_id: question.id, answer: attributes
+    post :create, question_id: question.id, answer: attributes, format: :json
   end
 
   def do_patch(attributes={})
     patch :update, question_id: question.id, id: answer,
-      answer: attributes
+      answer: attributes, format: :json
     answer.reload
   end
 
   def do_delete
-    delete :destroy, question_id: question.id, id: @answer
+    delete :destroy, question_id: question.id, id: answer, format: :json
   end
 
 end

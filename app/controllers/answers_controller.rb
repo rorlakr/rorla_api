@@ -2,6 +2,8 @@ class AnswersController < ApplicationController
   before_action :set_question
   before_action :set_answer, only: [:show, :update, :destroy]
 
+  # respond_to :json
+
   def index
     @answers = @question.answers
     render json: @answers

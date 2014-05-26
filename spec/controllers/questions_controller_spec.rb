@@ -105,25 +105,39 @@ describe QuestionsController do
 
     context "> 비로그인 상태" do
       describe 'GET #index' do
-        it "> 비로그인 메시지를 할당한다."
+        it "> 상태 코드 401(권한 없음)을 할당한다." do
+          do_index
+          expect(response.status).to be 401
+        end
       end
 
       describe 'GET #show' do
-        it "> 비로그인 메시지를 할당한다."
+        it "> 상태 코드 401(권한 없음)을 할당한다." do
+          do_show
+          expect(response.status).to be 401
+        end
       end
 
       describe 'POST #create' do
-        it "> 비로그인 메시지를 할당한다."
+        it "> 상태 코드 401(권한 없음)을 할당한다." do
+          do_post valid_attributes
+          expect(response.status).to be 401
+        end
       end
 
       describe 'PATCH #update' do
-        it "비로그인 메시지를 할당한다."
+        it "> 상태 코드 401(권한 없음)을 할당한다." do
+          do_patch valid_attributes
+          expect(response.status).to be 401
+        end
       end
 
       describe 'DELETE #destroy' do
-        it "비로그인 메시지를 할당한다."
+        it "> 상태 코드 401(권한 없음)을 할당한다." do
+          do_delete
+          expect(response.status).to be 401
+        end
       end
-
     end
   end
 
@@ -132,24 +146,24 @@ describe QuestionsController do
   private
 
   def do_index
-    get :index
+    get :index, format: :json
   end
 
   def do_show
-    get :show, id: question
+    get :show, id: question, format: :json
   end
 
   def do_post(attributes={})
-    post :create, question: attributes
+    post :create, question: attributes, format: :json
   end
 
   def do_patch(attributes={})
-    patch :update, id: question, question: attributes
+    patch :update, id: question, question: attributes, format: :json
     question.reload
   end
   
   def do_delete
-    delete :destroy, id: question
+    delete :destroy, id: question, format: :json
   end
 
 end
