@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423003616) do
+ActiveRecord::Schema.define(version: 20140515041020) do
 
   create_table "answers", force: true do |t|
     t.text     "content"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20140423003616) do
   end
 
   add_index "auth_tokens", ["user_id"], name: "index_auth_tokens_on_user_id"
+
+  create_table "bulletins", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bulletins", ["title"], name: "index_bulletins_on_title", unique: true
 
   create_table "bundlelinks", force: true do |t|
     t.string   "title",                      null: false
@@ -106,6 +115,7 @@ ActiveRecord::Schema.define(version: 20140423003616) do
     t.datetime "published_at"
     t.integer  "hit",          default: 0
     t.datetime "deleted_at"
+    t.integer  "bulletin_id"
   end
 
   add_index "posts", ["writer_id"], name: "index_posts_on_writer_id"
