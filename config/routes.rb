@@ -22,6 +22,7 @@ RorlaApi::Application.routes.draw do
   end
 
   resources :posts, only: [ :index, :show, :create, :update, :destroy ], concerns: :commentable
+  match 'posts' => 'posts#options', via: :options
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
