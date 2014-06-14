@@ -1,4 +1,11 @@
 class ApplicationController < ActionController::API
+  before_action :allow_cors
+
+  def allow_cors
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  end
 
   # To resolve the following error: ActionController::UnknownFormat
   include ActionController::StrongParameters

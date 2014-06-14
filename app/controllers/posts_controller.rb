@@ -28,6 +28,10 @@ class PostsController < ApplicationController
     render json: { message: "destroyed" }
   end
 
+  def options
+    head(:ok)
+  end
+
   private
     def set_post
       @post = Post.find(params[:id])
